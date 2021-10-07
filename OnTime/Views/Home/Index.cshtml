@@ -10,7 +10,7 @@
             <div class="btn-group">
 
 
-                <input asp-for="EmployeePin" class="text-center form-control-lg mb-2" id="code">
+                <input asp-for="EmployeePin" class="text-center form-control-lg mb-2" id="code" style="background-color: #1d1919; opacity:0.5;">
 
             </div>
             <div class="btn-group">
@@ -31,11 +31,11 @@
             <div class="btn-group">
                 <button type="button" class="btn btn-outline-warning py-3" onclick="document.getElementById('code').value=document.getElementById('code').value.slice(0, -1);">&lt;</button>
                 <button type="button" class="btn btn-outline-warning py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '0';">0</button>
-                <button type="submit" class="btn btn-success py-3">Enter</button>
+                <button type="button" class="btn btn-success py-3" asp-controller="Account" asp-action="Login">LOGIN</button>
 
 
             </div>
-            <a style="color:#ff6a00;" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+            
         </div>
     </div>
 </form>
