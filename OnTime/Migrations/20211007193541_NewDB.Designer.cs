@@ -10,8 +10,8 @@ using OnTime.Models;
 namespace OnTime.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210928011106_OnTImeDB")]
-    partial class OnTImeDB
+    [Migration("20211007193541_NewDB")]
+    partial class NewDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,6 +164,9 @@ namespace OnTime.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DOB")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -171,8 +174,11 @@ namespace OnTime.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("EmployeePin")
-                        .HasColumnType("int");
+                    b.Property<string>("EmployeePin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

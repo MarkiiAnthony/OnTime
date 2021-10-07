@@ -32,6 +32,47 @@ namespace OnTime.Controllers
             return View();
         }
 
-    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(Registerviewmodel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = model.Name,
+                    Email = model.Email,
+                    Password = model.Password,
+                    DOB = model.DOB,
+                    HireDate = model.HireDate
 
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Logoff()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Login", "Account");
+
+
+
+        }
+    }
 }
+

@@ -16,15 +16,19 @@ namespace OnTime.Models.Viewmodels
         public string Email { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+
+     
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm Password")]
+        
+        [Display(Name = "Confirm Pin")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        public int EmployeePin { get; set; }
+        public String Position { get; set; }
+
+        public string DOB { get; set; }
+
+        public string HireDate { get; set; }
     }
 }

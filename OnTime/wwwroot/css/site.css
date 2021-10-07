@@ -8398,3 +8398,11 @@ a[data-toggle="collapse"] {
         border-bottom: 1px solid #fff;
         color: #fff;
     }
+
+    #EmployeePin{
+        -webkit-text-security: disc;
+    }
+
+#ConfirmPin {
+    -webkit-text-security: disc;
+}
