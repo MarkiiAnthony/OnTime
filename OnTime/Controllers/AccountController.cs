@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using OnTime.Interfaces;
 
 namespace OnTime.Controllers
 {
@@ -14,17 +15,42 @@ namespace OnTime.Controllers
     {
         // private readonly INotyfService _notify;
         private readonly ApplicationDbContext _db;
+        private readonly IUser _userService;
         UserManager<ApplicationUser> _userManager;
         SignInManager<ApplicationUser> _signInManager;
         RoleManager<IdentityRole> _roleManager;
+       
 
-        public AccountController(ApplicationDbContext db, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager) //INotyfService notify)
+        public AccountController(IUser userService, ApplicationDbContext db, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager) //INotyfService notify)
         {
+            _userService = userService;
             _db = db;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             //_notify = notify;
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(loginviewmodel model)
+        {
+
+            
+           
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.EmployeePin, model.EmployeePin.ToString(), model.RememberMe, false);
+                if (result.Succeeded)
+                {
+
+                    return RedirectToAction("Index", "Home");
+
+
+
+                }
+                ModelState.AddModelError("", "Invalid Login Attempt");
+            }
+            return View(model);
         }
 
         public IActionResult Register()
@@ -42,7 +68,7 @@ namespace OnTime.Controllers
                 {
                     UserName = model.Name,
                     Email = model.Email,
-                    Password = model.Password,
+                    EmployeePin = model.Password,
                     DOB = model.DOB,
                     HireDate = model.HireDate
 
@@ -68,11 +94,13 @@ namespace OnTime.Controllers
         {
             await _signInManager.SignOutAsync();
 
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
 
 
 
         }
+
+
     }
 }
 

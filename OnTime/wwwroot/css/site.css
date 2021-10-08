@@ -8399,10 +8399,14 @@ a[data-toggle="collapse"] {
         color: #fff;
     }
 
-    #EmployeePin{
+    #ConfirmPassword{
         -webkit-text-security: disc;
     }
 
-#ConfirmPin {
+#Password {
+    -webkit-text-security: disc;
+}
+
+#code {
     -webkit-text-security: disc;
 }

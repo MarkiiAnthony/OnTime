@@ -9,7 +9,10 @@ namespace OnTime.Models.Viewmodels
     public class loginviewmodel
     {
         [Required]
-        public int EmployeePin { get; set; }
+        public string EmployeePin{ get; set; }
         public string name { get; set; }
+
+        [Display(Name = "Remember Me?")]
+        public bool RememberMe { get; set; }
     }
 }

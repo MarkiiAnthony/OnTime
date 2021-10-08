@@ -31,11 +31,11 @@
             <div class="btn-group">
                 <button type="button" class="btn btn-outline-warning py-3" onclick="document.getElementById('code').value=document.getElementById('code').value.slice(0, -1);">&lt;</button>
                 <button type="button" class="btn btn-outline-warning py-3" onclick="document.getElementById('code').value=document.getElementById('code').value + '0';">0</button>
-                <button type="button" class="btn btn-success py-3" asp-controller="Account" asp-action="Login">LOGIN</button>
-
+                <button type="submit" class="btn btn-success py-3" asp-controller="Account" asp-action="Login">LOGIN</button>
+                <input asp-for="RememberMe" class="form-check-input" type="checkbox"> Remember me
 
             </div>
-            
+           
         </div>
     </div>
 </form>
