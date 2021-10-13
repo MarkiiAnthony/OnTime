@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css">
 </head>
-<body  style="overflow: hidden;">
+<body >
 
-    <div class="wrapper d-flex align-items-stretch" style="overflow:hidden;">
+    <div class="wrapper d-flex align-items-stretch" >
         <nav id="sidebar">
             <div class="p-4 pt-5" style="background-color: #1d1919; opacity:0.7;">
                 <a href="#" class="img logo rounded-circle mb-5" style="background-image: url('../images/logo.png') "></a>
@@ -25,7 +25,12 @@
 
         <li class="nav-item ">
             <a asp-controller="Dashboard" asp-action="Schedule" aria-expanded="false" class="">Schedule</a>
-        </li>}
+        </li>
+         <li class="nav-item ">
+            <a asp-controller="Account" asp-action="Profile" aria-expanded="false" class="">Profile</a>
+        </li>
+        
+        }
                     else
                     {
 

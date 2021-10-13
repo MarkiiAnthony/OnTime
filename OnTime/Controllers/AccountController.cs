@@ -98,7 +98,10 @@ namespace OnTime.Controllers
 
 
         }
-
+        public IActionResult Profile()
+        {
+            return View();
+        }
 
     }
 }
