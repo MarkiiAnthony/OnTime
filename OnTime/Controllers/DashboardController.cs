@@ -12,5 +12,10 @@ namespace OnTime.Controllers
         {
             return View();
         }
+
+        public IActionResult Schedule()
+        {
+            return View();
+        }
     }
 }

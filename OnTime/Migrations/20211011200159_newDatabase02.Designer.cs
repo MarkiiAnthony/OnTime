@@ -10,8 +10,8 @@ using OnTime.Models;
 namespace OnTime.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211008001953_NewDB3")]
-    partial class NewDB3
+    [Migration("20211011200159_newDatabase02")]
+    partial class newDatabase02
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -173,9 +173,6 @@ namespace OnTime.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("EmployeePin")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HireDate")
                         .HasColumnType("nvarchar(max)");

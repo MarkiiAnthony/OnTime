@@ -172,9 +172,6 @@ namespace OnTime.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("EmployeePin")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("HireDate")
                         .HasColumnType("nvarchar(max)");
 

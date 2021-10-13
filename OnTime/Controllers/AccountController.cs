@@ -30,20 +30,22 @@ namespace OnTime.Controllers
             _signInManager = signInManager;
             //_notify = notify;
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(loginviewmodel model)
         {
-
-            
-           
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.EmployeePin, model.EmployeePin.ToString(), model.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Dashboard");
 
 
 
@@ -52,6 +54,7 @@ namespace OnTime.Controllers
             }
             return View(model);
         }
+
 
         public IActionResult Register()
         {
@@ -68,7 +71,6 @@ namespace OnTime.Controllers
                 {
                     UserName = model.Name,
                     Email = model.Email,
-                    EmployeePin = model.Password,
                     DOB = model.DOB,
                     HireDate = model.HireDate
 
@@ -94,7 +96,7 @@ namespace OnTime.Controllers
         {
             await _signInManager.SignOutAsync();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
 
 
 

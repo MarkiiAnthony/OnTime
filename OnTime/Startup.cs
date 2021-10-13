@@ -38,7 +38,7 @@ namespace OnTime
                 setupAction.Password.RequireLowercase = false;
                 setupAction.Password.RequireNonAlphanumeric = false;
                 setupAction.Password.RequireUppercase = false;
-                setupAction.Password.RequiredLength = 0;
+                setupAction.Password.RequiredLength = 6;
                 setupAction.SignIn.RequireConfirmedEmail = false;
                 setupAction.SignIn.RequireConfirmedPhoneNumber = false;
             }).AddEntityFrameworkStores<ApplicationDbContext>();
@@ -68,7 +68,7 @@ namespace OnTime
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }
