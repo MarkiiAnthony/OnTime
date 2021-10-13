@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnTime.Migrations
 {
-    public partial class newDatabase02 : Migration
+    public partial class NewDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

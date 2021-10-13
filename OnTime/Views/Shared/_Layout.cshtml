@@ -1,6 +1,6 @@
 ﻿@inject Microsoft.AspNetCore.Identity.SignInManager<OnTime.Models.ApplicationUser> signInManager
 <!doctype html>
-<html lang="en">
+<html lang="en" >
 <head>
     <title>OnTime</title>
     <meta charset="utf-8">
@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css">
 </head>
-<body>
+<body  style="overflow: hidden;">
 
-    <div class="wrapper d-flex align-items-stretch">
+    <div class="wrapper d-flex align-items-stretch" style="overflow:hidden;">
         <nav id="sidebar">
             <div class="p-4 pt-5" style="background-color: #1d1919; opacity:0.7;">
                 <a href="#" class="img logo rounded-circle mb-5" style="background-image: url('../images/logo.png') "></a>
@@ -24,7 +24,7 @@
                         {
 
         <li class="nav-item ">
-            <a asp-controller="Account" asp-action="Register" aria-expanded="false" class="">Schedule</a>
+            <a asp-controller="Dashboard" asp-action="Schedule" aria-expanded="false" class="">Schedule</a>
         </li>}
                     else
                     {
@@ -32,7 +32,7 @@
 
                     }
                         <li class="active">
-                            <a asp-controller="Dashboard" asp-action="Schedule" aria-expanded="false" class="">Register</a>
+                            <a asp-controller="Account" asp-action="Register" aria-expanded="false" class="">Register</a>
 
                         </li>
 
@@ -74,20 +74,27 @@
                     <li class="nav-item ">
                         <a class="p-5"> Name: @User.Identity.Name</a>
                     </li>
+                                    <li class="nav-item ">
+                                        <a class="p-5"> Name:</a>
+                                    </li>
+                                                    <li class="nav-item ">
+                                                        <a class="p-5"> Position: </a>
+                                                    </li>
  }
-                else
-                {
-    <li class="nav-item ">
-        <a class="p-5"> Name:</a>
-    </li>
+                                                else
+                                                {
+                                    <li class="nav-item ">
+                                        <a class="p-5"> Name:</a>
+                                    </li>
+                                                    <li class="nav-item ">
+                                                        <a class="p-5"> Position: </a>
+                                                    </li>
 }
 
                                 <li class="nav-item">
                                     <a class="p-5"> ID:</a>
                                 </li>
-                                <li class="nav-item ">
-                                    <a class="p-5"> Position:</a>
-                                </li>
+
                                 @if (signInManager.IsSignedIn(User))
                                 {
                     <li class="nav-item">
@@ -99,21 +106,25 @@
 
 
                         </div>
+                    </div>
 
                 </nav>
-
                 <div class="container">
                     <main role="main" class="pb-3">
                         @RenderBody()
                     </main>
                 </div>
             </div>
+
         </div>
+
+
 
         <script src="~/js/jquery.min.js"></script>
         <script src="~/js/popper.min.js"></script>
         <script src="~/js/bootstrap.min.js"></script>
         <script src="~/js/site.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.9.0/main.min.js"></script>
+        @await Component.InvokeAsync("Notyf")
     </body>
 </html>

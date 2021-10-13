@@ -2,9 +2,9 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
@@ -64,6 +64,7 @@ body {
     background: url(../images/banner2.png) rgba( 55, 69, 66);
     background-size: cover;
     background-blend-mode: multiply;
+    overflow: hidden;
 }
 .footer {
   position: absolute;
@@ -126,14 +127,16 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  text-align: left;
-  background-color: #fff; }
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    overflow: hidden;
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -8183,8 +8186,10 @@ a.text-dark:hover, a.text-dark:focus {
     page-break-after: avoid; }
   @page {
     size: a3; }
-  body {
-    min-width: 992px !important; }
+    body {
+        min-width: 992px !important;
+        overflow: hidden;
+    }
   .container {
     min-width: 992px !important; }
   .navbar {
@@ -8211,12 +8216,14 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font-family: "Poppins", Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.8;
-  font-weight: normal;
-  background: #fafafa;
-  color: gray; }
+    font-family: "Poppins", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: normal;
+    background: #fafafa;
+    color: gray;
+    overflow: hidden;
+}
 
 a {
   -webkit-transition: .3s all ease;

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OnTime.Interfaces;
 using OnTime.Services;
+using AspNetCoreHero.ToastNotification;
 
 namespace OnTime
 {
@@ -31,17 +32,13 @@ namespace OnTime
             services.AddScoped<IUser, UserService>();
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<ApplicationUser, IdentityRole>(setupAction =>
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddNotyf(config =>
             {
-                setupAction.Password.RequireDigit = true;
-                setupAction.Password.RequiredUniqueChars = 0;
-                setupAction.Password.RequireLowercase = false;
-                setupAction.Password.RequireNonAlphanumeric = false;
-                setupAction.Password.RequireUppercase = false;
-                setupAction.Password.RequiredLength = 6;
-                setupAction.SignIn.RequireConfirmedEmail = false;
-                setupAction.SignIn.RequireConfirmedPhoneNumber = false;
-            }).AddEntityFrameworkStores<ApplicationDbContext>();
+                config.DurationInSeconds = 10;
+                config.IsDismissable = true;
+                config.Position = NotyfPosition.BottomRight;
+            });
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

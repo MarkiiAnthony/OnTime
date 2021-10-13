@@ -10,8 +10,8 @@ using OnTime.Models;
 namespace OnTime.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211011200159_newDatabase02")]
-    partial class newDatabase02
+    [Migration("20211013020042_NewDB")]
+    partial class NewDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -8,12 +8,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OnTime.Interfaces;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace OnTime.Controllers
 {
     public class AccountController : Controller
     {
-        // private readonly INotyfService _notify;
+        private readonly INotyfService _notify;
         private readonly ApplicationDbContext _db;
         private readonly IUser _userService;
         UserManager<ApplicationUser> _userManager;
@@ -21,14 +22,14 @@ namespace OnTime.Controllers
         RoleManager<IdentityRole> _roleManager;
        
 
-        public AccountController(IUser userService, ApplicationDbContext db, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager) //INotyfService notify)
+        public AccountController(IUser userService, ApplicationDbContext db, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager,INotyfService notify)
         {
             _userService = userService;
             _db = db;
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
-            //_notify = notify;
+            _notify = notify;
         }
         public IActionResult Login()
         {
@@ -55,12 +56,10 @@ namespace OnTime.Controllers
             return View(model);
         }
 
-
         public IActionResult Register()
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(Registerviewmodel model)
@@ -69,11 +68,9 @@ namespace OnTime.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.Name,
+                    UserName = model.Email,
                     Email = model.Email,
-                    DOB = model.DOB,
-                    HireDate = model.HireDate
-
+                    Name = model.Name
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
