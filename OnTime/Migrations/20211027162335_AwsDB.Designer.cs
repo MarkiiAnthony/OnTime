@@ -10,15 +10,15 @@ using OnTime.Models;
 namespace OnTime.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211013020042_NewDB")]
-    partial class NewDB
+    [Migration("20211027162335_AwsDB")]
+    partial class AwsDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.10")
+                .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -229,6 +229,25 @@ namespace OnTime.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("OnTime.Models.Attendance", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("DaysAbsent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DaysPresent")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ontimePercentage")
+                        .HasColumnType("int");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("Atten");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -278,6 +297,17 @@ namespace OnTime.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("OnTime.Models.Attendance", b =>
+                {
+                    b.HasOne("OnTime.Models.ApplicationUser", "username")
+                        .WithMany()
+                        .HasForeignKey("Name")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("username");
                 });
 #pragma warning restore 612, 618
         }

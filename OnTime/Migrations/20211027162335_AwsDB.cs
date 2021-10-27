@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnTime.Migrations
 {
-    public partial class NewDB : Migration
+    public partial class AwsDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -156,6 +156,26 @@ namespace OnTime.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Atten",
+                columns: table => new
+                {
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DaysPresent = table.Column<int>(type: "int", nullable: false),
+                    DaysAbsent = table.Column<int>(type: "int", nullable: false),
+                    ontimePercentage = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Atten", x => x.Name);
+                    table.ForeignKey(
+                        name: "FK_Atten_AspNetUsers_Name",
+                        column: x => x.Name,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -212,6 +232,9 @@ namespace OnTime.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Atten");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
