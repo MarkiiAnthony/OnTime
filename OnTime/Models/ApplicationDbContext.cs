@@ -17,6 +17,9 @@ namespace OnTime.Models
 
         }
         public DbSet<Attendance> Atten { get; set; }
+        public DbSet<PunchClockModel> PunchClock { get; set; }
+
+        public DbSet<Reports> _Reports { get; set; }
     }
 
 }

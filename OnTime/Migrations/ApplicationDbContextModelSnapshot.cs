@@ -238,12 +238,48 @@ namespace OnTime.Migrations
                     b.Property<int>("DaysPresent")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Early")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Late")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ontimePercentage")
                         .HasColumnType("int");
 
                     b.HasKey("Name");
 
                     b.ToTable("Atten");
+                });
+
+            modelBuilder.Entity("OnTime.Models.PunchClockModel", b =>
+                {
+                    b.Property<int>("PunchID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("PunchedIn")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PunchedOut")
+                        .HasColumnType("bit");
+
+                    b.HasKey("PunchID");
+
+                    b.ToTable("PunchClock");
+                });
+
+            modelBuilder.Entity("OnTime.Models.Reports", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("_Reports");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

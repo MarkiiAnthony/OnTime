@@ -20,7 +20,8 @@ namespace OnTime.Models
 
         public int DaysPresent { get; set; }
         public int DaysAbsent { get; set; }
-
+        public Boolean Early { get; set; }
+        public Boolean Late { get; set; }
         public int ontimePercentage { get; set; }
 
      

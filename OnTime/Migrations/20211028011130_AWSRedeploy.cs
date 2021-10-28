@@ -3,10 +3,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnTime.Migrations
 {
-    public partial class AwsDB : Migration
+    public partial class AWSRedeploy : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "_Reports",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK__Reports", x => x.ID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -48,6 +60,20 @@ namespace OnTime.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PunchClock",
+                columns: table => new
+                {
+                    PunchID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PunchedIn = table.Column<bool>(type: "bit", nullable: false),
+                    PunchedOut = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PunchClock", x => x.PunchID);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,6 +189,8 @@ namespace OnTime.Migrations
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     DaysPresent = table.Column<int>(type: "int", nullable: false),
                     DaysAbsent = table.Column<int>(type: "int", nullable: false),
+                    Early = table.Column<bool>(type: "bit", nullable: false),
+                    Late = table.Column<bool>(type: "bit", nullable: false),
                     ontimePercentage = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -219,6 +247,9 @@ namespace OnTime.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "_Reports");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -235,6 +266,9 @@ namespace OnTime.Migrations
 
             migrationBuilder.DropTable(
                 name: "Atten");
+
+            migrationBuilder.DropTable(
+                name: "PunchClock");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
