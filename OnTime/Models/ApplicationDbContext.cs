@@ -20,6 +20,8 @@ namespace OnTime.Models
         public DbSet<PunchClockModel> PunchClock { get; set; }
 
         public DbSet<Reports> _Reports { get; set; }
+
+        public DbSet<ApplicationRoles> _roles { get; set; }
     }
 
 }
