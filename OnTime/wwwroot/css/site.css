@@ -8503,5 +8503,8 @@ a[data-toggle="collapse"] {
     font-size: 10pt;
 }
 
-/*Punch Clock*/
-
+/*Calendar Text*/
+.fc-toolbar-title {
+    color: #fff;
+    font-size:8px;
+}

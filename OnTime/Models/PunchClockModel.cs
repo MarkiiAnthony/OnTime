@@ -12,6 +12,6 @@ namespace OnTime.Models
         public int PunchID { get; set; }
         public Boolean PunchedIn { get; set; }
         public Boolean PunchedOut { get; set; }
-        public DateTime DateTime { get; set; }
+       
     }
 }

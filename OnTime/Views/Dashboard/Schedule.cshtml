@@ -15,16 +15,32 @@
             }
         };
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'resourceTimelineWeek',
-            resourceAreaHeaderContent: 'Employees',
-            resources: 'https://fullcalendar.io/demo-resources.json?with-nesting&with-colors',
-            events: 'https://fullcalendar.io/demo-events.json?single-day&for-resource-timeline'
-
+            height: 450,
+            resourceAreaWidth:800,
+            windowResize: function (arg) {
+                
+            },
+       
+            initialView: 'timeGrid',
+            dayCount: 2,
+            headerToolbar: {
+                left: 'prev,next today,dayGridMonth,timeGridWeek,timeGridDay',
+                center: 'title',
+                
+            },
+            selectable: true,
+            select: function (event) {
+                onShowModal(event, null);
+            }
         });
       
         calendar.render();
     });
 
+    function onShowModal(obj, isEventDetail) {
+        $("#scheduleView").modal("show");
+    }
 </script>
 
-<div id='calendar' style="background-color: #000000; color: azure; opacity: 0.6;"></div>
+<div id='calendar' style=" color: white; background-color: black; opacity: 0.6;"></div>
+

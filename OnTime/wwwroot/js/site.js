@@ -85,3 +85,5 @@ updateTime();
 setInterval(function () {
     updateTime()
 }, 1000);
+
+//Calendar JS
