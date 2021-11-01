@@ -1,15 +1,17 @@
-﻿
-<div class="row">
+﻿s
+<div class="row" >
+    
+        <div class="time" style="background-color: #1d1919; opacity:0.5; width:250px;">
+            <span class="hms"></span>
+            <span class="ampm"></span>
+            <br>
+            <span class="date"></span>
 
-    <div class="time" style="background-color: #1d1919; opacity:0.5;">
-        <span class="hms"></span>
-        <span class="ampm"></span>
-        <br>
-        <span class="date"></span>
-        
-    </div>
-    <div class="row">
-        <button type="submit" class="btn btn-success">Punch In</button> &nbsp;&nbsp;
-        <button type="submit" class="btn btn-danger">Punch Out</button>
-    </div>
+        </div>
+
+        <form id="PunchTool" method="post" asp-action="PunchTool" asp-controller="PunchIn" class="login-form">
+
+            <button type="submit" class="btn btn-success " style="height:35px;">Punch In</button> &nbsp;&nbsp;
+            <button type="submit" class="btn btn-danger " style="height:35px;">Punch Out</button>
+            </form>
 </div>
