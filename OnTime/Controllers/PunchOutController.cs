@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnTime.Models;
 using System;
 using System.Collections.Generic;
@@ -8,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace OnTime.Controllers
 {
-    
-        public class PunchInController : Controller
+    public class PunchOutController : Controller
     {
         private readonly ApplicationDbContext _db;
 
-        public PunchInController( ApplicationDbContext db)
+        public PunchOutController(ApplicationDbContext db)
         {
-             _db = db;
+            _db = db;
         }
-            public IActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -31,18 +29,17 @@ namespace OnTime.Controllers
             var punchTool = new PunchClockModel
             {
 
-                PunchedIn = true,
-                PunchedOut = false,
+                PunchedIn = false,
+                PunchedOut = true,
                 PunchDateTime = DateTime.Now,
 
+            };
 
-                };
+            _db.Add(punchTool);
+            _db.SaveChanges();
 
-                _db.Add(punchTool);
-                _db.SaveChanges();
-           
 
-         
+
             return RedirectToAction("Index", "Dashboard");
         }
     }
