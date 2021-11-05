@@ -29,6 +29,8 @@ namespace OnTime.Models.Viewmodels
 
         public String Position { get; set; }
 
+        public IEnumerable <ApplicationRoles> Role { get; set; }
+
         public string DOB { get; set; }
 
         public string HireDate { get; set; }

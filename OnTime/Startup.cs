@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using OnTime.Interfaces;
 using OnTime.Services;
 using AspNetCoreHero.ToastNotification;
+using Rotativa.AspNetCore;
 
 namespace OnTime
 {
@@ -67,6 +68,7 @@ namespace OnTime
                     name: "default",
                     pattern: "{controller=Account}/{action=Login}/{id?}");
             });
+            RotativaConfiguration.Setup((Microsoft.AspNetCore.Hosting.IHostingEnvironment)env);
         }
     }
 }

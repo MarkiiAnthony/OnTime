@@ -11,10 +11,8 @@ namespace OnTime.Models
         [Key]
         public int roleID { get; set; }
 
-        public string Admin { get; set; }
-        public string Cashier { get; set; }
+       public string roleName { get; set; }
 
-        public string IT{ get; set; }
 
     }
 }

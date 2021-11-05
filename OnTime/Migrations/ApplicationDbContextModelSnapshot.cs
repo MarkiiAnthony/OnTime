@@ -157,13 +157,7 @@ namespace OnTime.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Admin")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Cashier")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IT")
+                    b.Property<string>("roleName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("roleID");
@@ -265,10 +259,15 @@ namespace OnTime.Migrations
                     b.Property<bool>("Late")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ReportsID")
+                        .HasColumnType("int");
+
                     b.Property<int>("ontimePercentage")
                         .HasColumnType("int");
 
                     b.HasKey("Name");
+
+                    b.HasIndex("ReportsID");
 
                     b.ToTable("Atten");
                 });
@@ -301,7 +300,12 @@ namespace OnTime.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("Name");
 
                     b.ToTable("_Reports");
                 });
@@ -365,7 +369,25 @@ namespace OnTime.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OnTime.Models.Reports", null)
+                        .WithMany("Attendances")
+                        .HasForeignKey("ReportsID");
+
                     b.Navigation("username");
+                });
+
+            modelBuilder.Entity("OnTime.Models.Reports", b =>
+                {
+                    b.HasOne("OnTime.Models.ApplicationUser", "username")
+                        .WithMany()
+                        .HasForeignKey("Name");
+
+                    b.Navigation("username");
+                });
+
+            modelBuilder.Entity("OnTime.Models.Reports", b =>
+                {
+                    b.Navigation("Attendances");
                 });
 #pragma warning restore 612, 618
         }

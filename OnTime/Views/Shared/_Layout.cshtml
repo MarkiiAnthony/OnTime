@@ -1,5 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Identity.SignInManager<OnTime.Models.ApplicationUser> signInManager
-<!doctype html>
+<!---->
 <html lang="en" >
 <head>
     <title>OnTime</title>
@@ -32,13 +32,18 @@
         <li class="nav-item ">
             <a asp-controller="PunchIn" asp-action="Index" aria-expanded="false" class="">Time Clock</a>
         </li>
-        
+       
+         <li class="nav-item ">
+            <a asp-controller="Reports" asp-action="Index" aria-expanded="false" class="">Reports</a>
+        </li>
+            
+
         }
-                    else
-                    {
+        else
+        {
 
 
-                    }
+        }
                         <li class="active">
                             <a asp-controller="Account" asp-action="Register" aria-expanded="false" class="">Register</a>
 
