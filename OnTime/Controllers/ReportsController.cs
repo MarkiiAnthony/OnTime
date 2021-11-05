@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnTime.Models;
 using Rotativa.AspNetCore;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,12 @@ namespace OnTime.Controllers
 {
     public class ReportsController : Controller
     {
+        private readonly ApplicationDbContext _db;
+        public ReportsController(ApplicationDbContext db)
+        {
+            _db = db;
+            
+        }
         public IActionResult Index()
         {
             return View();
@@ -22,7 +29,8 @@ namespace OnTime.Controllers
 
         public IActionResult WeeklyReports()
         {
-            return new ViewAsPdf();
+            IEnumerable<PunchClockModel> PunchLogList = _db.PunchClock;
+            return new ViewAsPdf(PunchLogList);
         }
     }
 }

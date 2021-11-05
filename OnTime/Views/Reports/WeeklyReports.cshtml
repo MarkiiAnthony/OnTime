@@ -1,1 +1,27 @@
-﻿<h1>This is A WEEKLY REPORT!</h1>
+﻿@model IEnumerable<OnTime.Models.PunchClockModel>
+<h1>PUNCH CLOCK LOGS:</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Punch IN</th>
+            <th scope="col">Punch Out</th>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Employee</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var PunchLog in Model)
+        {
+        <tr>
+            <th scope="row">@PunchLog.PunchID</th>
+            <td>@PunchLog.PunchedIn</td>
+            <td>@PunchLog.PunchedOut</td>
+            <td>@PunchLog.PunchDateTime</td>
+            <td>@PunchLog.Employee</td>
+
+
+        </tr>
+        }
+    </tbody>
+</table>
