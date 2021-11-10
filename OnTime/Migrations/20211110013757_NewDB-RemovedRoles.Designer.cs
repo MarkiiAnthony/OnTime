@@ -10,8 +10,8 @@ using OnTime.Models;
 namespace OnTime.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211105181413_UserRole")]
-    partial class UserRole
+    [Migration("20211110013757_NewDB-RemovedRoles")]
+    partial class NewDBRemovedRoles
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,21 +152,6 @@ namespace OnTime.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("OnTime.Models.ApplicationRoles", b =>
-                {
-                    b.Property<int>("roleID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("roleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("roleID");
-
-                    b.ToTable("_roles");
-                });
-
             modelBuilder.Entity("OnTime.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -261,10 +246,15 @@ namespace OnTime.Migrations
                     b.Property<bool>("Late")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ReportsID")
+                        .HasColumnType("int");
+
                     b.Property<int>("ontimePercentage")
                         .HasColumnType("int");
 
                     b.HasKey("Name");
+
+                    b.HasIndex("ReportsID");
 
                     b.ToTable("Atten");
                 });
@@ -275,6 +265,9 @@ namespace OnTime.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Employee")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PunchDateTime")
                         .HasColumnType("datetime2");
@@ -297,7 +290,12 @@ namespace OnTime.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("Name");
 
                     b.ToTable("_Reports");
                 });
@@ -361,7 +359,25 @@ namespace OnTime.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OnTime.Models.Reports", null)
+                        .WithMany("Attendances")
+                        .HasForeignKey("ReportsID");
+
                     b.Navigation("username");
+                });
+
+            modelBuilder.Entity("OnTime.Models.Reports", b =>
+                {
+                    b.HasOne("OnTime.Models.ApplicationUser", "username")
+                        .WithMany()
+                        .HasForeignKey("Name");
+
+                    b.Navigation("username");
+                });
+
+            modelBuilder.Entity("OnTime.Models.Reports", b =>
+                {
+                    b.Navigation("Attendances");
                 });
 #pragma warning restore 612, 618
         }

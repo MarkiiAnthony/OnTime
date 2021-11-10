@@ -24,10 +24,10 @@ namespace OnTime.Controllers
         public IActionResult GenerateReport()
         {
 
-            return RedirectToAction("WeeklyReports", "Reports");
+            return RedirectToAction("Reports", "Reports");
         }
 
-        public IActionResult WeeklyReports()
+        public IActionResult Reports()
         {
             IEnumerable<PunchClockModel> PunchLogList = _db.PunchClock;
             return new ViewAsPdf(PunchLogList);

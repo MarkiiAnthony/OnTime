@@ -3,22 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OnTime.Migrations
 {
-    public partial class AWSRedeploy : Migration
+    public partial class NewDBRemovedRoles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "_Reports",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK__Reports", x => x.ID);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -69,7 +57,9 @@ namespace OnTime.Migrations
                     PunchID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PunchedIn = table.Column<bool>(type: "bit", nullable: false),
-                    PunchedOut = table.Column<bool>(type: "bit", nullable: false)
+                    PunchedOut = table.Column<bool>(type: "bit", nullable: false),
+                    PunchDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Employee = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -95,6 +85,25 @@ namespace OnTime.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "_Reports",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK__Reports", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK__Reports_AspNetUsers_Name",
+                        column: x => x.Name,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,11 +200,18 @@ namespace OnTime.Migrations
                     DaysAbsent = table.Column<int>(type: "int", nullable: false),
                     Early = table.Column<bool>(type: "bit", nullable: false),
                     Late = table.Column<bool>(type: "bit", nullable: false),
-                    ontimePercentage = table.Column<int>(type: "int", nullable: false)
+                    ontimePercentage = table.Column<int>(type: "int", nullable: false),
+                    ReportsID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Atten", x => x.Name);
+                    table.ForeignKey(
+                        name: "FK_Atten__Reports_ReportsID",
+                        column: x => x.ReportsID,
+                        principalTable: "_Reports",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Atten_AspNetUsers_Name",
                         column: x => x.Name,
@@ -203,6 +219,11 @@ namespace OnTime.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX__Reports_Name",
+                table: "_Reports",
+                column: "Name");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -242,13 +263,15 @@ namespace OnTime.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Atten_ReportsID",
+                table: "Atten",
+                column: "ReportsID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "_Reports");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -272,6 +295,9 @@ namespace OnTime.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "_Reports");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

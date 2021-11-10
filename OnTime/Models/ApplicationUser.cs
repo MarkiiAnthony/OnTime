@@ -17,5 +17,8 @@ namespace OnTime.Models
         public string DOB { get; set; }
 
         public string HireDate { get; set; }
+
+        
+
     }
 }

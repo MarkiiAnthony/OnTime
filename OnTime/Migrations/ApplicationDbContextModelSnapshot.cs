@@ -150,21 +150,6 @@ namespace OnTime.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("OnTime.Models.ApplicationRoles", b =>
-                {
-                    b.Property<int>("roleID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("roleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("roleID");
-
-                    b.ToTable("_roles");
-                });
-
             modelBuilder.Entity("OnTime.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
