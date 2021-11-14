@@ -30,6 +30,7 @@ namespace OnTime.Controllers
         public IActionResult Reports()
         {
             IEnumerable<PunchClockModel> PunchLogList = _db.PunchClock;
+
             return new ViewAsPdf(PunchLogList);
         }
     }
