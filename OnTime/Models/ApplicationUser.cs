@@ -18,6 +18,8 @@ namespace OnTime.Models
 
         public string HireDate { get; set; }
         public int HoursWorked { get; set; }
+        public double  PaidTimeOff { get; set; }
+        public string PtoRequested{ get; set; }
 
 
 

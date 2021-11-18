@@ -32,7 +32,23 @@ namespace OnTime.Controllers
         }
         public IActionResult Login()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+
+
+
+
+                return View("~/Views/Dashboard/Index.cshtml");
+                
+
+
+
+            }
+            else
+            {
+                return View();
+            }
+            
         }
 
         [HttpPost]
@@ -69,7 +85,8 @@ namespace OnTime.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    Name = model.Name
+                    Name = model.Name,
+                    PaidTimeOff = 40.00,
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

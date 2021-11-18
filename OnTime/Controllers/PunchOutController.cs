@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnTime.Interfaces;
 using OnTime.Models;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,11 @@ namespace OnTime.Controllers
     public class PunchOutController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly IStopwatch _StopwatchService;
 
-        public PunchOutController(ApplicationDbContext db)
+        public PunchOutController(ApplicationDbContext db, IStopwatch stopwatchService)
         {
+            _StopwatchService = stopwatchService;
             _db = db;
         }
         public IActionResult Index()
@@ -34,6 +37,7 @@ namespace OnTime.Controllers
                 PunchedOut = true,
                 PunchDateTime = DateTime.Now,
                 Employee = User.FindFirstValue(ClaimTypes.Name),
+                HoursWorked = _StopwatchService.StopTimer(),
 
             };
 

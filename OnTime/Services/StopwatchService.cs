@@ -14,7 +14,7 @@ namespace OnTime.Services
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
-            Thread.Sleep(10000);
+            
 
             return stopWatch.Elapsed;
         }
@@ -23,7 +23,7 @@ namespace OnTime.Services
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Stop();
-            Thread.Sleep(10000);
+            
 
             return stopWatch.Elapsed; 
 
