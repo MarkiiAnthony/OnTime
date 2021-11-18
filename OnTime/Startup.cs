@@ -31,6 +31,7 @@ namespace OnTime
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUser, UserService>();
+            services.AddTransient<IAppointmentService, AppointmentService>();
             services.AddScoped<IStopwatch, StopwatchService>();
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using OnTime.Interfaces;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using OnTime.Utility;
 
 namespace OnTime.Controllers
 {
@@ -71,8 +72,15 @@ namespace OnTime.Controllers
             return View(model);
         }
 
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
+            if (!_roleManager.RoleExistsAsync(Helper.ITadmin).GetAwaiter().GetResult())
+            {
+               await  _roleManager.CreateAsync(new IdentityRole(Helper.ITadmin));
+                await _roleManager.CreateAsync(new IdentityRole(Helper.Manager));
+                await _roleManager.CreateAsync(new IdentityRole(Helper.Cashier));
+
+            }
             return View();
         }
         [HttpPost]
@@ -92,6 +100,7 @@ namespace OnTime.Controllers
                 if (result.Succeeded)
                 {
 
+                    await _userManager.AddToRoleAsync(user, model.roleName);
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Dashboard");
                 }
