@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using OnTime.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,14 @@ using System.Threading.Tasks;
 namespace OnTime.Utility
 {
     public static class Helper
+        
     {
+        
+        
         public static string ITadmin = "ITadmin";
         public static string Manager = "Manager";
         public static string Cashier = "Cashier";
-
+        
         public static List<SelectListItem> GetRolesForDropDown()
         {
             return new List<SelectListItem>

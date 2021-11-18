@@ -20,6 +20,7 @@ namespace OnTime.Models
         public int HoursWorked { get; set; }
         public double  PaidTimeOff { get; set; }
         public string PtoRequested{ get; set; }
+        public string UserRole { get; set; }
 
 
 

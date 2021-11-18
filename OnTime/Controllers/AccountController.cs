@@ -99,6 +99,9 @@ namespace OnTime.Controllers
                 {
                     ModelState.AddModelError("", error.Description);
                 }
+                var userInfouser = User.Identity.Name;
+                ViewBag["UserId"] = _db.Users.Where(x => x.UserName == userInfouser)
+                  .Select(x => x.Id);
             }
             return View(model);
         }
