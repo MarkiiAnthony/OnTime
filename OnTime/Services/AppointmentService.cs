@@ -32,12 +32,28 @@ namespace OnTime.Services
 
         public List<ITadminVM> GetITadminList()
         {
-            throw new NotImplementedException();
+            var ITadmins = (from user in _db.Users
+                            join userRoles in _db.UserRoles on user.Id equals userRoles.UserId
+                            join roles in _db.Roles.Where(x => x.Name == Helper.ITadmin) on userRoles.RoleId equals roles.Id
+                            select new ITadminVM
+                            {
+                                Id = user.Id,
+                                Name = user.Name,
+                            }).ToList();
+            return ITadmins;
         }
 
         public List<ManagerVM> GetManagerList()
         {
-            throw new NotImplementedException();
+            var Managers = (from user in _db.Users
+                            join userRoles in _db.UserRoles on user.Id equals userRoles.UserId
+                            join roles in _db.Roles.Where(x => x.Name == Helper.Manager) on userRoles.RoleId equals roles.Id
+                            select new ManagerVM
+                            {
+                                Id = user.Id,
+                                Name = user.Name,
+                            }).ToList();
+            return Managers;
         }
     }
 }
