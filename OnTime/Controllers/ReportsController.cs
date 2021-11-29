@@ -13,8 +13,8 @@ namespace OnTime.Controllers
     public class ReportsController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly IAppointmentService _schedulingService;
-        public ReportsController(ApplicationDbContext db, IAppointmentService schedulingService)
+        private readonly ISchedulingService _schedulingService;
+        public ReportsController(ApplicationDbContext db, ISchedulingService schedulingService)
         {
             _db = db;
             _schedulingService = schedulingService;
@@ -28,19 +28,27 @@ namespace OnTime.Controllers
         public IActionResult GenerateReport()
         {
 
-            return RedirectToAction("Reports", "Reports");
+            return RedirectToAction("PunchReport", "Reports");
         }
 
-        public IActionResult Reports()
+        public IActionResult PunchReport()
         {
             IEnumerable<PunchClockModel> PunchLogList = _db.PunchClock;
-            IEnumerable<CashierVM> cashierList = _schedulingService.GetCashierList();
-            IEnumerable<ITadminVM> ITadminList = _schedulingService.GetITadminList();
-            IEnumerable<ManagerVM> managerList = _schedulingService.GetManagerList();
+           
 
 
 
             return new ViewAsPdf(PunchLogList);
         }
+        public IActionResult UsersReport()
+        {
+
+            IEnumerable<ApplicationUser> userList = _schedulingService.GetAllUsers();
+
+
+
+            return new ViewAsPdf(userList);
+        }
+        
     }
 }

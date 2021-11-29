@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace OnTime.Controllers
 {
-    public class ScheduleController : Controller
+    public class SchedulerController : Controller
     {
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult ScheduleManager()
         {
             return View();
         }

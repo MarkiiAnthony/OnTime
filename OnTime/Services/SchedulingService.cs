@@ -9,14 +9,29 @@ using System.Threading.Tasks;
 
 namespace OnTime.Services
 {
-    public class AppointmentService : IAppointmentService
+    public class SchedulingService : ISchedulingService
     {
         private readonly ApplicationDbContext _db;
 
-        public AppointmentService(ApplicationDbContext db)
+        public SchedulingService(ApplicationDbContext db)
         {
             _db = db;
         }
+
+        public List<ApplicationUser> GetAllUsers()
+        {
+            var Users = (from user in _db.Users
+                         select new ApplicationUser
+                         {
+                             Id = user.Id,
+                             Name = user.Name,
+                             UserRole = user.UserRole,
+                             HireDate = user.HireDate,
+
+                         }).ToList();
+            return Users;
+        }
+
         public List<CashierVM> GetCashierList()
         {
             var cashiers = (from user in _db.Users
@@ -55,5 +70,7 @@ namespace OnTime.Services
                             }).ToList();
             return Managers;
         }
+
+        
     }
 }

@@ -1,4 +1,9 @@
-﻿<form id="reportGenerator" method="post" asp-controller="Reports" asp-action="GenerateReport">
+﻿<form id="punchClockReport" method="post" asp-controller="Reports" asp-action="GenerateReport">
   
-    <button type="submit" class="btn btn-lg btn-outline-warning">Generate Report</button>
+    <button type="submit" class="btn btn-lg btn-success">Punch Clock Report</button>
+</form>
+
+<form id="userReport" method="post" asp-controller="Reports" asp-action="UsersReport">
+
+    <button type="submit" class="btn btn-lg btn-primary">Users Report</button>
 </form>

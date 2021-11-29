@@ -1,0 +1,27 @@
+﻿@model IEnumerable<OnTime.Models.ApplicationUser>
+<h1>USER LOGS:</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">User Role</th>
+            <th scope="col">Hire Date</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var UserLog in Model)
+        {
+            <tr>
+                <th scope="row">@UserLog.Id</th>
+                <td>@UserLog.Name</td>
+                <td>@UserLog.UserRole</td>
+                <td>@UserLog.HireDate</td>
+             
+
+
+            </tr>
+        }
+    </tbody>
+</table>

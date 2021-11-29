@@ -18,22 +18,22 @@
             height: 450,
             resourceAreaWidth:800,
             windowResize: function (arg) {
-                
+
             },
-       
-            initialView: 'timeGrid',
+
+            initialView: 'dayGridMonth',
             dayCount: 2,
             headerToolbar: {
                 left: 'prev,next today,dayGridMonth,timeGridWeek,timeGridDay',
                 center: 'title',
-                
+
             },
             selectable: true,
             select: function (event) {
                 onShowModal(event, null);
             }
         });
-      
+
         calendar.render();
     });
 
@@ -43,4 +43,8 @@
 </script>
 
 <div id='calendar' style=" color: white; background-color: black; opacity: 0.6;"></div>
+<hr />
+<br/>
+<button class="btn btn-success" asp-controller="Scheduler" asp-action="ScheduleManager">Scheduling Manager</button>
+
 
