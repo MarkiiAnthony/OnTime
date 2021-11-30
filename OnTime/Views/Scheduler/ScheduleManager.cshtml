@@ -1,0 +1,61 @@
+﻿@model IEnumerable<OnTime.Models.ApplicationUser>
+
+<div class="content" style="overflow-y: scroll; background-color: azure; opacity: 0.7; ">
+
+    <div class="container">
+        <h2 class="mb-5">Schedule Manager</h2>
+
+
+        <div class="table-responsive custom-table-responsive ">
+            <form>
+                <table class="table custom-table">
+                    <thead>
+                        <tr>
+
+                            <th scope="col">
+                                <label class="control control--checkbox">
+                                    <input type="checkbox" class="js-check-all" />
+                                    <div class="control__indicator"></div>
+                                </label>
+                            </th>
+
+                            <th scope="col">Email</th>
+                            <th scope="col">Employee</th>
+                            <th scope="col">Shift Length</th>
+                            <th scope="col">Role</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+            <tr scope="row">
+
+                <td>
+                   
+                </td>
+                <td> @user.Email</td>
+                <td>
+                   @user.Name 
+                </td>
+                <td><select asp-items="@ViewBag.Duration" class="control"></select></td>
+                <td>@user.UserRole</td>
+
+            </tr>
+                            <tr class="spacer"><td colspan="100"></td></tr>
+
+
+
+                                            <tr class="spacer"><td colspan="100"></td></tr>}
+
+
+
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
