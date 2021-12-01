@@ -1,58 +1,76 @@
 ﻿@model IEnumerable<OnTime.Models.ApplicationUser>
 
-<div class="content" style="overflow-y: scroll; background-color: azure; opacity: 0.7; ">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.5.1/main.min.css" />
+<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.2.513/styles/kendo.default-v2.min.css" />
+
+<div class="content" style=" background-color: #1d1919; opacity: 0.5; ">
 
     <div class="container">
-        <h2 class="mb-5">Schedule Manager</h2>
+        <h2 class="mb-5" style="color:azure;">Schedule Manager</h2>
 
 
-        <div class="table-responsive custom-table-responsive ">
-            <form>
+        <div class="table-responsive  custom-table-responsive">
+            <form id="scheduleManager" autocomplete="off" novalidate="novalidate">
+
+                <label style="color:azure;">Employee:</label>
+                <select id="EmployeeId" asp-items="@(new SelectList(ViewBag.UserList,"Id","Name"))" class="control"></select>
+                <label style="color:azure;">Week Start:</label>
+                <input id="startWeek" type="date" />
+                <label style="color:azure;">Week End:</label>
+                <input id="endWeek" type="date" />
                 <table class="table custom-table">
                     <thead>
                         <tr>
-
-                            <th scope="col">
-                                <label class="control control--checkbox">
-                                    <input type="checkbox" class="js-check-all" />
-                                    <div class="control__indicator"></div>
-                                </label>
-                            </th>
-
-                            <th scope="col">Email</th>
-                            <th scope="col">Employee</th>
-                            <th scope="col">Shift Length</th>
-                            <th scope="col">Role</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var user in Model)
-                        {
-            <tr scope="row">
 
-                <td>
-                   
-                </td>
-                <td> @user.Email</td>
-                <td>
-                   @user.Name 
-                </td>
-                <td><select asp-items="@ViewBag.Duration" class="control"></select></td>
-                <td>@user.UserRole</td>
+                        <tr scope="row">
 
-            </tr>
-                            <tr class="spacer"><td colspan="100"></td></tr>
+                            <td>
+                                <label style="color:azure;">Date:</label>
+                                <input id="shiftDate" type="date" />
+                            </td>
+                            <td>
+                                <label style="color:azure;">Start Shift:</label><select name="shiftStart" id="shiftStart">
+                                    <option value="12AM">12AM</option>
+                                    <option value="1AM">1AM</option>
+                                    <option value="2AM">2AM</option>
+                                    <option value="3AM">3AM</option>
+                                    <option value="4AM">4AM</option>
+                                    <option value="5AM">5AM</option>
+                                    <option value="6AM">6AM</option>
+                                    <option value="7AM">7AM</option>
+                                    <option value="8AM">8AM</option>
+                                    <option value="9AM">9AM</option>
+                                    <option value="10AM">10AM</option>
+                                    <option value="11AM">11AM</option>
+                                    <option value="12PM">12PM</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label style="color:azure;">Shift Type:</label><select name="shiftType" id="shiftType">
+                                    <option value="lead">Shift Lead</option>
+                                    <option value="front">Front</option>
+                                    <option value="Back">Back</option>
+
+                                </select>
+                            </td>
+                            <td><label style="color:azure;">Shift Length:</label><select asp-items="@ViewBag.Duration" class="control" id="shiftLength"></select></td>
 
 
-
-                                            <tr class="spacer"><td colspan="100"></td></tr>}
-
-
+                        </tr>
 
                     </tbody>
+
+
                 </table>
+                
+                <button id="scheduleSubmit" type="button" onclick="onSubmitForm()" class="btn btn-success">SubmitButton</button>
             </form>
+
         </div>
 
 

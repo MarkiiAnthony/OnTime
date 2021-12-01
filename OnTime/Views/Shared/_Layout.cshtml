@@ -1,6 +1,6 @@
 ﻿@inject Microsoft.AspNetCore.Identity.SignInManager<OnTime.Models.ApplicationUser> signInManager
 <!---->
-<html lang="en" >
+<html lang="en">
 <head>
     <title>OnTime</title>
     <meta charset="utf-8">
@@ -11,14 +11,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/css/util.css">
-   
+
     <!--===============================================================================================-->
 
 
@@ -100,7 +94,7 @@
                                 {
 
                                     <li class="nav-item ">
-                                        <a class="p-5"> Name: @User.Identity.Name</a>
+                                        <a id="UserId" class="p-5"> Name: @User.Identity.Name</a>
                                     </li>
                                     <li class="nav-item ">
                                         <a class="p-5"> Name:</a>
@@ -131,7 +125,7 @@
                                     <li class="nav-item">
                                         <partial name="_LoginPartialView" />
                                     </li>
-}
+                                }
 
                                 else { }
                             </ul>
@@ -151,13 +145,19 @@
         </div>
 
 
-
-        <script src="~/js/jquery.min.js"></script>
+        <script src="~/js/main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="~/js/popper.min.js"></script>
         <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/notify.min.js"></script>
         <script src="~/js/site.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.5.1"></script>
+        <script src="https://kendo.cdn.telerik.com/2020.2.513/js/kendo.all.min.js"></script>
         <script src="~/vendor/select2/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.9.0/main.min.js"></script>
-        @await Component.InvokeAsync("Notyf")
+
+        @await RenderSectionAsync("Scripts", required: false)
     </body>
 </html>

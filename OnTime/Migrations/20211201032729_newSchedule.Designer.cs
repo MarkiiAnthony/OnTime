@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnTime.Models;
 
 namespace OnTime.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211201032729_newSchedule")]
+    partial class newSchedule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -336,7 +338,7 @@ namespace OnTime.Migrations
 
             modelBuilder.Entity("OnTime.Models.SchedulerModel", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -359,19 +361,109 @@ namespace OnTime.Migrations
                     b.Property<DateTime>("ShiftDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("ShiftDate2")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDate3")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDate4")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDate5")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDate6")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDate7")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("ShiftDateEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDateEnd2")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDateEnd3")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDateEnd4")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDateEnd5")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDateEnd6")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShiftDateEnd7")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ShiftDuration")
                         .HasColumnType("int");
 
+                    b.Property<int>("ShiftDuration2")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShiftDuration3")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShiftDuration4")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShiftDuration5")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShiftDuration6")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShiftDuration7")
+                        .HasColumnType("int");
+
                     b.Property<string>("ShiftType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShiftType2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShiftType3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShiftType4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShiftType5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShiftType6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShiftType7")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartWeek")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("startTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("startTime2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("startTime3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("startTime4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("startTime5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("startTime6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("startTime7")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

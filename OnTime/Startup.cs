@@ -36,6 +36,7 @@ namespace OnTime
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddHttpContextAccessor();
             services.AddNotyf(config =>
             {
                 config.DurationInSeconds = 10;
