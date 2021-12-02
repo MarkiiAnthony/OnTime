@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnTime.Interfaces;
 using OnTime.Models;
-using OnTime.Models.Viewmodels;
 using OnTime.Utility;
 using System;
 using System.Collections.Generic;
@@ -28,14 +27,9 @@ namespace OnTime.Controllers
         {
             ViewBag.Duration = Helper.GetShiftLength();
             ViewBag.UserList = _schedulingService.GetAllUsers();
-            
-            
-           
-            
+            IEnumerable<ApplicationUser> users = _schedulingService.GetAllUsers();
 
-            return View();
+            return View(users);
         }
-
-       
     }
 }

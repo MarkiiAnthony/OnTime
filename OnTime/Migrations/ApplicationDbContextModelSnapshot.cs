@@ -334,51 +334,6 @@ namespace OnTime.Migrations
                     b.ToTable("_Reports");
                 });
 
-            modelBuilder.Entity("OnTime.Models.SchedulerModel", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Employee")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndWeek")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ManagerId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ShiftDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ShiftDateEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ShiftDuration")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShiftType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartWeek")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("startTime")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Schedules");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)

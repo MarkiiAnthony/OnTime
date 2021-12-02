@@ -5,4 +5,4 @@
     <button type="submit" class="dropdown-item text-danger" asp-controller="Account" asp-action="Logoff"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> <span key="t-logout">Logout</span></button>
 </form>
 
-
+@await Component.InvokeAsync("Notyf")

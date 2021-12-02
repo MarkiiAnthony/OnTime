@@ -15,7 +15,5 @@ namespace OnTime.Interfaces
         public List<CashierVM> GetCashierList();
 
         public List<ApplicationUser> GetAllUsers();
-
-        public Task<int> AddUpdate(SchedulingVM model);
     }
 }

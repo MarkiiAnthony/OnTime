@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using OnTime.Interfaces;
 using OnTime.Models;
 using System;
 using System.Collections.Generic;
@@ -11,19 +10,12 @@ namespace OnTime.Utility
     public static class Helper
         
     {
-      
-
+        
+        
         public static string ITadmin = "ITadmin";
         public static string Manager = "Manager";
         public static string Cashier = "Cashier";
-        public static string scheduleAdded = "Schedule added successfully.";
-        public static string scheduleUpdated = "Schedule updated successfully.";
-        public static string scheduleDeleted = "Schedule deleted successfully.";
-        public static string scheduleExists = "Schedule already exists.";
-        public static string Error = "Something went wrong please try again.";
-        public static int success_code = 1;
-        public static int failure_code = 0;
-
+        
         public static List<SelectListItem> GetRolesForDropDown()
         {
             return new List<SelectListItem>

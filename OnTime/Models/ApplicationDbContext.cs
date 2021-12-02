@@ -22,8 +22,6 @@ namespace OnTime.Models
         public DbSet<Reports> _Reports { get; set; }
         public DbSet<PTORequests> _Ptorequests { get; set; }
 
-        public DbSet<SchedulerModel> Schedules { get; set; }
-
 
     }
 
