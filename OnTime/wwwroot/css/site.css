@@ -549,7 +549,9 @@ pre {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
-  margin-left: auto; }
+  margin-left: auto; 
+  height:100%;
+}
 
 .row {
   display: -webkit-box;
@@ -8425,7 +8427,7 @@ a[data-toggle="collapse"] {
 
 
 .container {
-    height: 100vh
+    height: 100%;
 }
 
 .card {

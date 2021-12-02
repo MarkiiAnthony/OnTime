@@ -18,6 +18,46 @@ namespace OnTime.Services
             _db = db;
         }
 
+        public async Task<int> AddUpdate(SchedulingVM model)
+        {
+
+            var shiftDate = DateTime.Parse(model.ShiftDate);
+            var shiftEndDate = DateTime.Parse(model.ShiftDateEnd).AddMinutes(Convert.ToDouble(model.ShiftDuration));
+           
+            if (model!=null && model.Id > 0)
+            {
+                //Update
+                return 1;
+            }
+            else
+            {
+                //Create
+                SchedulerModel schedule = new SchedulerModel()
+                {
+                    Employee = model.Employee,
+                    ShiftDate = shiftDate,
+                    ShiftDateEnd = shiftEndDate,
+                   
+                    IsApproved = model.IsApproved,
+                    ShiftDuration = model.ShiftDuration,
+                    startTime = model.startTime,
+                    StartWeek = model.StartWeek,
+                    EndWeek = model.EndWeek,
+                    ManagerId = model.ManagerId,
+                    EmployeeId = model.EmployeeId,
+                    ShiftType = model.ShiftType,
+                   
+
+
+
+                };
+                _db.Schedules.Add(schedule);
+               await  _db.SaveChangesAsync();
+                return 2;
+            }
+            
+        }
+
         public List<ApplicationUser> GetAllUsers()
         {
             var Users = (from user in _db.Users
@@ -27,7 +67,6 @@ namespace OnTime.Services
                              Name = user.Name,
                              UserRole = user.UserRole,
                              HireDate = user.HireDate,
-                             
 
                          }).ToList();
             return Users;

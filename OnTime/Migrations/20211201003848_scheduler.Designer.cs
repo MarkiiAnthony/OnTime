@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnTime.Models;
 
 namespace OnTime.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211201003848_scheduler")]
+    partial class scheduler
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -336,10 +338,13 @@ namespace OnTime.Migrations
 
             modelBuilder.Entity("OnTime.Models.SchedulerModel", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Date")
+                        .HasColumnType("int");
 
                     b.Property<string>("Employee")
                         .HasColumnType("nvarchar(max)");
@@ -355,12 +360,6 @@ namespace OnTime.Migrations
 
                     b.Property<string>("ManagerId")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ShiftDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ShiftDateEnd")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("ShiftDuration")
                         .HasColumnType("int");
