@@ -1,22 +1,33 @@
-﻿@{ 
+﻿@{
     ViewBag.Title = "Schedule";
+    @model IEnumerable<OnTime.Models.Viewmodels.ScheduleViewModel>
 
 }
 
-<h3>Upcoming Shifts</h3>
-<hr/>
+<h3 style="color:azure;">Upcoming Shifts</h3>
 
-@if (ViewBag.EventList != null)
+
+@if (Model != null)
 {
-    <table class="table table-hover">
+    <table class="table table-hover" style="background-color: #1d1919; opacity:0.7;">
         <tr>
-            <th>Title</th>
+            <th style="color:azure;">Employee</th>
+            <th style="color:azure;">Shift Type</th>
+            <th style="color:azure;">Start</th>
+            <th style="color:azure;">End</th>
+            <th style="color:azure;">Created By</th>
+
         </tr>
-        @foreach (var item in ViewBag.EventList)
+
+        @foreach (var schedule in Model)
         {
-                    <tr>
-                        <td>@item</td>
-                    </tr>
+            <tr>
+                <td>@schedule.Employee</td>
+                <td>@schedule.ShiftType</td>
+                <td>@schedule.startTime</td>
+                <td>@schedule.EndTime</td>
+                <td>@schedule.CreatedBy</td>
+            </tr>
         }
     </table>
 

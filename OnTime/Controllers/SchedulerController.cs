@@ -18,10 +18,11 @@ using System.Threading.Tasks;
 
 namespace OnTime.Controllers
 {
+  
     public class SchedulerController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public List<string> GoogleEvents = new List<string>();
+        public List<SchedulerModel> GoogleEvents = new List<SchedulerModel>();
         private readonly ISchedulingService _schedulingService;
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
         static string ApplicationName = "Google Calendar API .NET Quickstart";
@@ -39,13 +40,10 @@ namespace OnTime.Controllers
         public IActionResult ScheduleManager()
         {
             SchedulerApi();
-            ViewBag.EventList = GoogleEvents;
-            
-            
-           
-            
 
-            return View();
+            IEnumerable<ScheduleViewModel> schedule  =   _schedulingService.GetSchedule();
+
+            return View(schedule);
         }
 
         public void SchedulerApi()
@@ -90,7 +88,21 @@ namespace OnTime.Controllers
             {
                 foreach (var eventItem in events.Items)
                 {
-                    GoogleEvents.Add(eventItem.Summary);
+                    
+                    SchedulerModel scheduler = new SchedulerModel
+                    {
+                        CreatedBy = eventItem.Organizer.Email,
+                        ShiftType = eventItem.Description,
+                        Employee = eventItem.Summary,
+                        EndTime = eventItem.End.DateTime.ToString(),
+                        startTime = eventItem.Start.DateTime.ToString(),
+
+                    };
+
+
+                    _schedulingService.InsertSchedule(scheduler);
+                    
+
                 }
             }
            

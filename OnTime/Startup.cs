@@ -34,7 +34,7 @@ namespace OnTime
             services.AddTransient<ISchedulingService, SchedulingService>();
             services.AddScoped<IStopwatch, StopwatchService>();
             services.AddControllersWithViews();
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),ServiceLifetime.Scoped);
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddHttpContextAccessor();
             services.AddNotyf(config =>

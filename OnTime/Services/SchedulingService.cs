@@ -5,6 +5,7 @@ using OnTime.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OnTime.Services
@@ -17,44 +18,25 @@ namespace OnTime.Services
         {
             _db = db;
         }
+        public async Task InsertSchedule(SchedulerModel schedule)
 
-        public async Task<int> AddUpdate(SchedulingVM model)
         {
-
-            var shiftDate = DateTime.Parse(model.ShiftDate);
-            var shiftEndDate = DateTime.Parse(model.ShiftDateEnd).AddMinutes(Convert.ToDouble(model.ShiftDuration));
-           
-            if (model!=null && model.Id > 0)
+            SchedulerModel scheduler = new SchedulerModel
             {
-                //Update
-                return 1;
-            }
-            else
-            {
-                //Create
-                SchedulerModel schedule = new SchedulerModel()
-                {
-                    Employee = model.Employee,
-                    ShiftDate = shiftDate,
-                    ShiftDateEnd = shiftEndDate,
-                   
-                    IsApproved = model.IsApproved,
-                    ShiftDuration = model.ShiftDuration,
-                    startTime = model.startTime,
-                    StartWeek = model.StartWeek,
-                    EndWeek = model.EndWeek,
-                    ManagerId = model.ManagerId,
-                    EmployeeId = model.EmployeeId,
-                    ShiftType = model.ShiftType,
-                   
+                CreatedBy = schedule.CreatedBy,
+                ShiftType = schedule.ShiftType,
+                Employee = schedule.Employee,
+                EndTime = schedule.EndTime,
+                startTime = schedule.EndTime,
+
+            };
 
 
 
-                };
-                _db.Schedules.Add(schedule);
-               await  _db.SaveChangesAsync();
-                return 2;
-            }
+                  _db.Schedules.Add(scheduler);
+
+                await   _db.SaveChangesAsync();
+
             
         }
 
@@ -111,6 +93,21 @@ namespace OnTime.Services
             return Managers;
         }
 
-        
+        public List<ScheduleViewModel> GetSchedule()
+        {
+            Thread.Sleep(6000);
+            var schedule = (from sch in _db.Schedules
+                            select new ScheduleViewModel
+                            {
+                                Employee = sch.Employee,
+                                ShiftType = sch.ShiftType,
+                                EndTime = sch.EndTime,
+                                startTime = sch.startTime,
+                                CreatedBy = sch.CreatedBy,
+
+                            }).ToList();
+            return schedule;     
+                            
+        }
     }
 }

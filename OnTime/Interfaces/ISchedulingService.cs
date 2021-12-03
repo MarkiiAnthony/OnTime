@@ -16,6 +16,9 @@ namespace OnTime.Interfaces
 
         public List<ApplicationUser> GetAllUsers();
 
-        public Task<int> AddUpdate(SchedulingVM model);
+        public  Task InsertSchedule(SchedulerModel schedule );
+
+        public List<ScheduleViewModel> GetSchedule();
+
     }
 }
