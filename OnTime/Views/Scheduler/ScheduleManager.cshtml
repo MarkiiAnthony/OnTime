@@ -9,7 +9,7 @@
 
 @if (Model != null)
 {
-    <table class="table table-hover" style="background-color: #1d1919; opacity:0.7;">
+    <table class="table table-hover table-responsive" style="background-color: #1d1919; opacity: 0.7; table-layout: fixed;">
         <tr>
             <th style="color:azure;">Employee</th>
             <th style="color:azure;">Shift Type</th>
@@ -21,12 +21,13 @@
 
         @foreach (var schedule in Model)
         {
-            <tr>
+            <tr style="background-color:azure;">
                 <td>@schedule.Employee</td>
                 <td>@schedule.ShiftType</td>
                 <td>@schedule.startTime</td>
                 <td>@schedule.EndTime</td>
                 <td>@schedule.CreatedBy</td>
+                <td>@schedule.Id</td>
             </tr>
         }
     </table>

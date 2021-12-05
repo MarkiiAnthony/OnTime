@@ -24,13 +24,15 @@ namespace OnTime.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         public List<SchedulerModel> GoogleEvents = new List<SchedulerModel>();
         private readonly ISchedulingService _schedulingService;
+        private readonly ApplicationDbContext _db;
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
         static string ApplicationName = "Google Calendar API .NET Quickstart";
 
-        public SchedulerController(ISchedulingService schedulingService,IWebHostEnvironment webHostEnvironment)
+        public SchedulerController(ISchedulingService schedulingService,IWebHostEnvironment webHostEnvironment,ApplicationDbContext db)
             {
             _schedulingService = schedulingService;
             _webHostEnvironment = webHostEnvironment;
+            _db = db;
             }
         public IActionResult Index()
         {
@@ -88,7 +90,7 @@ namespace OnTime.Controllers
             {
                 foreach (var eventItem in events.Items)
                 {
-                    
+
                     SchedulerModel scheduler = new SchedulerModel
                     {
                         CreatedBy = eventItem.Organizer.Email,
@@ -96,11 +98,20 @@ namespace OnTime.Controllers
                         Employee = eventItem.Summary,
                         EndTime = eventItem.End.DateTime.ToString(),
                         startTime = eventItem.Start.DateTime.ToString(),
+                      
 
                     };
 
+                    var checkSchedule = _db.Schedules.Where(s => s.startTime == eventItem.Start.DateTime.ToString() && s.Employee == eventItem.Summary).FirstOrDefault();
+                    if (checkSchedule == null)
+                    {
+                        _schedulingService.InsertSchedule(scheduler);
+                    }
+                    else
+                    {
+                        
 
-                    _schedulingService.InsertSchedule(scheduler);
+                    }
                     
 
                 }
