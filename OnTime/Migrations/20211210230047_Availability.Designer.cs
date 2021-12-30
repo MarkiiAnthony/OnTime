@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnTime.Models;
 
 namespace OnTime.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211210230047_Availability")]
+    partial class Availability
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -276,8 +278,8 @@ namespace OnTime.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AvailabilityNote")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AvailabilityNote")
+                        .HasColumnType("int");
 
                     b.Property<string>("EmployeedId")
                         .HasColumnType("nvarchar(max)");
@@ -294,20 +296,14 @@ namespace OnTime.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("EmployeeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("HoursRequested")
-                        .HasColumnType("float");
+                    b.Property<int>("HoursRequested")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("PtoStartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PtoType")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("ptoapproval")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

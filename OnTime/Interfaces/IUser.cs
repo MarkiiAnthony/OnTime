@@ -8,6 +8,8 @@ namespace OnTime.Interfaces
 {
     public interface IUser
     {
-        ApplicationUser GetByPin(int pin);
+        public List<PTORequests> GetAllPtoRequests();
+        public List<EmpAvailability> GetAllavailability();
+
     }
 }

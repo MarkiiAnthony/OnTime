@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnTime.Models;
 
 namespace OnTime.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211210232429_proedit")]
+    partial class proedit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -276,8 +278,8 @@ namespace OnTime.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AvailabilityNote")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AvailabilityNote")
+                        .HasColumnType("int");
 
                     b.Property<string>("EmployeedId")
                         .HasColumnType("nvarchar(max)");
@@ -294,7 +296,7 @@ namespace OnTime.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("EmployeeName")
+                    b.Property<string>("EmployeeId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("HoursRequested")
@@ -305,9 +307,6 @@ namespace OnTime.Migrations
 
                     b.Property<string>("PtoType")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("ptoapproval")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

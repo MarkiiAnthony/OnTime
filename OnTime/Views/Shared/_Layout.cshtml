@@ -1,4 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Identity.SignInManager<OnTime.Models.ApplicationUser> signInManager
+
 <!---->
 <html lang="en">
 <head>
@@ -24,13 +25,28 @@
             <div class="p-4 pt-5" style="background-color: #1d1919; opacity:0.7;">
                 <a href="#" class="img logo rounded-circle mb-5" style="background-image: url('../images/logo.png') "></a>
                 <ul class="list-unstyled components mb-5">
-                    <li class="active">
-                        <a href="#" aria-expanded="false" class="">Admin</a>
+                      @if(User.IsInRole("ITadmin") || User.IsInRole("Manager"))
+                    {
+                         <li class="active">
+                        <a asp-controller="Admin" asp-action="Index" aria-expanded="false" class="">Admin</a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        
+                    }
+
+
+                            
                         @if (signInManager.IsSignedIn(User))
                         {
+                          
+                                
+                           
 
                         <li class="nav-item ">
-                            <a asp-controller="Scheduler" asp-action="Index" aria-expanded="false" class="">Schedule</a>
+                            <a asp-controller="Scheduler" asp-action="ScheduleManager" aria-expanded="false" class="">Schedule</a>
                         </li>
                         <li class="nav-item ">
                             <a asp-controller="Account" asp-action="Profile" aria-expanded="false" class="">Profile</a>
@@ -38,10 +54,16 @@
                         <li class="nav-item ">
                             <a asp-controller="PunchIn" asp-action="Index" aria-expanded="false" class="">Time Clock</a>
                         </li>
-
-                        <li class="nav-item ">
-                            <a asp-controller="Reports" asp-action="Index" aria-expanded="false" class="">Reports</a>
-                        </li>
+                        @if (User.IsInRole("ITadmin") || User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item ">
+                                <a asp-controller="Reports" asp-action="Index" aria-expanded="false" class="">Reports</a>
+                            </li>
+                        }
+                        else
+                        {
+                            
+                        }
                         <li class="nav-item ">
                             <a asp-controller="PTO" asp-action="Index" aria-expanded="false" class="">PTO</a>
                         </li>
@@ -100,7 +122,7 @@
                                         <a class="p-5"> Name:</a>
                                     </li>
                                     <li class="nav-item ">
-                                        <a class="p-5"> Position: </a>
+                                        <a class="p-5"> Position:</a>
                                     </li>
 
 
@@ -157,6 +179,7 @@
         <script src="https://kendo.cdn.telerik.com/2020.2.513/js/kendo.all.min.js"></script>
         <script src="~/vendor/select2/select2.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.9.0/main.min.js"></script>
+        <script src="//code.tidio.co/qbqj4qpuqh8aooumhongsuypzfr64bg5.js" async></script>
 
         @await RenderSectionAsync("Scripts", required: false)
     </body>

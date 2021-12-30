@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using OnTime.Interfaces;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using OnTime.Utility;
+using Microsoft.EntityFrameworkCore;
 
 namespace OnTime.Controllers
 {
@@ -95,6 +96,9 @@ namespace OnTime.Controllers
                     Email = model.Email,
                     Name = model.Name,
                     PaidTimeOff = 40.00,
+                    HireDate = model.HireDate,
+                    UserRole = model.roleName,
+
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -128,6 +132,15 @@ namespace OnTime.Controllers
         }
         public IActionResult Profile()
         {
+            var user = User.Identity.Name;
+
+            var userinfo = _db.Users.Where(x => x.UserName == user).FirstOrDefault();
+
+            ViewBag.UserName = user;
+            ViewBag.HireDate = userinfo.HireDate;
+            ViewBag.Role = userinfo.UserRole;
+            ViewBag.Pto = userinfo.PaidTimeOff;
+            
             return View();
         }
 

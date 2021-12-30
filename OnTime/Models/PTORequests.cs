@@ -10,9 +10,12 @@ namespace OnTime.Models
         public int Id { get; set; }
         public string PtoType { get; set; }
 
-        public int  HoursRequested { get; set; }
+        public double  HoursRequested { get; set; }
 
         public DateTime PtoStartDate { get; set; }
 
+        public string EmployeeName { get; set; }
+
+        public bool ptoapproval { get; set; }
     }
 }

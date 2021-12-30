@@ -36,7 +36,10 @@ namespace OnTime.Controllers
             return View();
 
         }
-            [HttpPost]
+
+      
+
+        [HttpPost]
         public IActionResult SubmitPTO(PTORequests PtoRequestModel)
 
         {
@@ -45,6 +48,7 @@ namespace OnTime.Controllers
                 PtoType = PtoRequestModel.PtoType,
                 PtoStartDate= PtoRequestModel.PtoStartDate,
                 HoursRequested = PtoRequestModel.HoursRequested,
+                EmployeeName = User.Identity.Name,
 
             };
 

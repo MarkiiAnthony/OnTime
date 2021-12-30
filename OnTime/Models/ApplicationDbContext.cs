@@ -24,6 +24,8 @@ namespace OnTime.Models
 
         public DbSet<SchedulerModel> Schedules { get; set; }
 
+        public DbSet<EmpAvailability> AvailabilityNotes { get; set; }
+
 
     }
 

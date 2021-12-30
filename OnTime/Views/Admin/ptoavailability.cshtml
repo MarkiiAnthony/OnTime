@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Schedule";
+    @model IEnumerable<OnTime.Models.EmpAvailability>
+
+}
+
+<h3 style="color:azure;">PTO Requests</h3>
+
+
+@if (Model != null)
+{
+    <table class="table table-hover table-responsive" style="background-color: #1d1919; opacity: 0.7;">
+        <tr>
+            
+            <th style="color:azure;">Employee</th>
+            <th style="color:azure;">Availability Note</th>
+           
+            
+
+        </tr>
+
+        @foreach (var avail in Model)
+        {
+            <tr style="background-color:azure;">
+                <td>@avail.EmployeedId</td>
+                <td>@avail.AvailabilityNote</td>
+
+               
+                
+                
+               
+            </tr>
+        }
+    </table>
+
+
+
+}
+else
+{
+    <div class="alert alert-danger">No Availability Notes</div>
+}

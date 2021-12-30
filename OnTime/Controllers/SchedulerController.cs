@@ -105,7 +105,14 @@ namespace OnTime.Controllers
                     var checkSchedule = _db.Schedules.Where(s => s.startTime == eventItem.Start.DateTime.ToString() && s.Employee == eventItem.Summary).FirstOrDefault();
                     if (checkSchedule == null)
                     {
-                        _schedulingService.InsertSchedule(scheduler);
+                        try
+                        {
+                            _schedulingService.InsertSchedule(scheduler);
+                        }
+                        catch
+                        {
+                            RedirectToAction("ErrorPage", "index");
+                        }
                     }
                     else
                     {

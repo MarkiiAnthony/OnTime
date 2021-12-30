@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Schedule";
+    @model IEnumerable<OnTime.Models.PTORequests>
+
+}
+
+<h3 style="color:azure;">PTO Requests</h3>
+
+
+@if (Model != null)
+{
+    <table class="table table-hover table-responsive" style="background-color: #1d1919; opacity: 0.7;">
+        <tr>
+            <th style="color:azure;">Id</th>
+            <th style="color:azure;">Employee</th>
+            <th style="color:azure;">Hours</th>
+            <th style="color:azure;">PTO Start</th>
+            <th style="color:azure;">Approved(Y/N)</th>
+            
+
+        </tr>
+
+        @foreach (var ptorequests in Model)
+        {
+            <tr style="background-color:azure;">
+                <td>@ptorequests.Id</td>
+                <td>@ptorequests.EmployeeName</td>
+                <td>@ptorequests.HoursRequested</td>
+                <td>@ptorequests.PtoStartDate</td>
+                 <td>@ptorequests.PtoStartDate</td>
+                
+                  <td><a class="btn btn-danger"  asp-controller="Admin" asp-action="ptoDenial">Reject</a></td>
+                   <td><a class="btn btn-success" asp-controller="Admin" asp-action="ptoApproval">Approved</a></td>
+                
+               
+            </tr>
+        }
+    </table>
+
+
+
+}
+else
+{
+    <div class="alert alert-danger">No PTO Requests</div>
+}

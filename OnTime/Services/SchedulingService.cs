@@ -27,7 +27,7 @@ namespace OnTime.Services
                 ShiftType = schedule.ShiftType,
                 Employee = schedule.Employee,
                 EndTime = schedule.EndTime,
-                startTime = schedule.EndTime,
+                startTime = schedule.startTime,
 
             };
 
@@ -53,6 +53,8 @@ namespace OnTime.Services
                          }).ToList();
             return Users;
         }
+
+        
 
         public List<CashierVM> GetCashierList()
         {
@@ -95,7 +97,7 @@ namespace OnTime.Services
 
         public List<ScheduleViewModel> GetSchedule()
         {
-            Thread.Sleep(6000);
+            Thread.Sleep(3000);
             var schedule = (from sch in _db.Schedules
                             select new ScheduleViewModel
                             {
